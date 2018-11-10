@@ -1,0 +1,8 @@
+{
+  "body": "{\"projectName\":\"Cloud\",\"requirements\":\"Javascript\"}",
+  "requestContext": {
+    "identity": {
+      "cognitoIdentityId": "test"
+    }
+  }
+}
