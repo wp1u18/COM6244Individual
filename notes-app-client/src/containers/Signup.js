@@ -1,10 +1,5 @@
 import React, { Component } from "react";
-import {
-    HelpBlock,
-    FormGroup,
-    FormControl,
-    ControlLabel
-} from "react-bootstrap";
+import { Alert, FormGroup, FormControl, ControlLabel, Button } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "./Signup.css";
 import { Auth } from "aws-amplify";
@@ -18,7 +13,6 @@ export default class Signup extends Component {
             email: "",
             password: "",
             confirmPassword: "",
-            confirmationCode: "",
             newUser: null
         };
     }
@@ -31,10 +25,6 @@ export default class Signup extends Component {
         );
     }
 
-    validateConfirmationForm() {
-        return this.state.confirmationCode.length > 0;
-    }
-
     handleChange = event => {
         this.setState({
             [event.target.id]: event.target.value
@@ -43,9 +33,7 @@ export default class Signup extends Component {
 
     handleSubmit = async event => {
         event.preventDefault();
-
         this.setState({ isLoading: true });
-
         try {
             const newUser = await Auth.signUp({
                 username: this.state.email,
@@ -57,49 +45,27 @@ export default class Signup extends Component {
         } catch (e) {
             alert(e.message);
         }
-
         this.setState({ isLoading: false });
     }
 
-    handleConfirmationSubmit = async event => {
+    handleRequestSubmit = async event => {
         event.preventDefault();
-
-        this.setState({ isLoading: true });
-
+   
         try {
-            await Auth.confirmSignUp(this.state.email, this.state.confirmationCode);
-            await Auth.signIn(this.state.email, this.state.password);
-
-            this.props.userHasAuthenticated(true);
-            this.props.history.push("/");
+            this.props.history.push("/Login");
         } catch (e) {
             alert(e.message);
             this.setState({ isLoading: false });
         }
     }
 
-    renderConfirmationForm() {
+    renderRequestForm() {
         return (
-            <form onSubmit={this.handleConfirmationSubmit}>
-                <FormGroup controlId="confirmationCode" bsSize="large">
-                    <ControlLabel>Confirmation Code</ControlLabel>
-                    <FormControl
-                        autoFocus
-                        type="tel"
-                        value={this.state.confirmationCode}
-                        onChange={this.handleChange}
-                    />
-                    <HelpBlock>Please check your email for the code.</HelpBlock>
-                </FormGroup>
-                <LoaderButton
-                    block
-                    bsSize="large"
-                    disabled={!this.validateConfirmationForm()}
-                    type="submit"
-                    isLoading={this.state.isLoading}
-                    text="Verify"
-                    loadingText="Verifying¡­"
-                />
+            <form onSubmit={this.handleRequestSubmit}>
+                <Alert bsStyle="warning">
+                    Your request has been sent to administors,please waiting for confitmation
+               </Alert>
+                <Button type="submit">Confirm</Button>
             </form>
         );
     }
@@ -139,7 +105,7 @@ export default class Signup extends Component {
                     type="submit"
                     isLoading={this.state.isLoading}
                     text="Signup"
-                    loadingText="Signing up¡­"
+                    loadingText="Requesting¡­"
                 />
             </form>
         );
@@ -150,7 +116,7 @@ export default class Signup extends Component {
             <div className="Signup">
                 {this.state.newUser === null
                     ? this.renderForm()
-                    : this.renderConfirmationForm()}
+                    : this.renderRequestForm()}
             </div>
         );
     }

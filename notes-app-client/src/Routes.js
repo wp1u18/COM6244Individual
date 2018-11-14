@@ -1,14 +1,20 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+import AuthenticatedRoute from "./components/AuthenticatedRoute";
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute"
+import AppliedRoute from "./components/AppliedRoute";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
-import NotFound from "./containers/NotFound";
-import AppliedRoute from "./components/AppliedRoute";
 import Signup from "./containers/Signup";
-import NewNote from "./containers/NewNote";
-import Notes from "./containers/Notes";
-import AuthenticatedRoute from "./components/AuthenticatedRoute";
-import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
+import NotFound from "./containers/NotFound";
+import Project from "./containers/Project";
+import NewProject from "./containers/NewProject";
+import Projects from "./containers/Projects";
+import Staff from "./containers/Staff";
+import NewStaff from "./containers/NewStaff";
+import StaffInfo from "./containers/StaffInfo";
+import Individual from "./containers/Individual";
+
 
 
 export default ({ childProps }) =>
@@ -16,8 +22,13 @@ export default ({ childProps }) =>
         <AppliedRoute path="/" exact component={Home} props={childProps} />
         <UnauthenticatedRoute path="/login" exact component={Login} props={childProps} />
         <UnauthenticatedRoute path="/signup" exact component={Signup} props={childProps} />
-        <AuthenticatedRoute path="/notes/new" exact component={NewNote} props={childProps} />
-        <AuthenticatedRoute path="/notes/:id" exact component={Notes} props={childProps} />
+        <AuthenticatedRoute path="/Project" exact component={Project} props={childProps} />
+        <AuthenticatedRoute path="/Individual" exact component={Individual} props={childProps} />
+        <AuthenticatedRoute path="/Projects/new" exact component={NewProject} props={childProps} />
+        <AuthenticatedRoute path="/Projects/:id" exact component={Projects} props={childProps} />
+        <AuthenticatedRoute path="/User" exact component={Staff} props={childProps} />
+        <AuthenticatedRoute path="/User/new" exact component={NewStaff} props={childProps} />
+        <AuthenticatedRoute path="/User/:id" exact component={StaffInfo} props={childProps} />
         { /* Finally, catch all unmatched routes */}
         <Route component={NotFound} />
     </Switch>;

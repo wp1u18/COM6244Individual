@@ -1,8 +1,6 @@
 {
-  "body": "{\"projectName\":\"Cloud\",\"requirements\":\"Javascript\"}",
-  "requestContext": {
-    "identity": {
-      "cognitoIdentityId": "test"
-    }
-  }
+  "body": "{\"StaffName\":\"PiWeicheng\",\"Gender\":\"male\",\"Email\":\"wp1u18@soton.ac.uk\",\"Skills\":\"JavaScript\",\"Birthdate\":\"1st Aug,1995\",\"StaffIdentity\":\"Staff\"}"
 }
+
+
+     

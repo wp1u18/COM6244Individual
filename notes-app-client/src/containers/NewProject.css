@@ -1,0 +1,9 @@
+.NewProject form {
+    padding-bottom: 40px;
+    font-size: 22px;
+    height: 150px;
+}
+
+.NewProject form textarea {
+        height: 300px;     
+    }

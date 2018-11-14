@@ -4,21 +4,21 @@ import { success, failure } from "./libs/response-lib";
 export async function main(event, context) {
     const data = JSON.parse(event.body);
     const params = {
-        TableName: "projects",
-        // 'Key' defines the partition key and sort key of the item to be updated指定被修改的Item的主键
-        // - 'projectName': Name of the project
-        // - 'projectId': path parameter
+        TableName: "Staff",
         Key: {
-          projectId: event.pathParameters.id
+          StaffId: event.pathParameters.id
         },
         // 'UpdateExpression' defines the attributes to be updated
         // 'ExpressionAttributeValues' defines the value in the update expression
-        UpdateExpression: "SET requirements = :requirements, pstatus = :pstatus, projectName = :projectName",                            
+        UpdateExpression: "SET StaffName = :StaffName, Gender = :Gender, Skills = :Skills, Email = :Email, Birthdate = :Birthdate, StaffIdentity = :StaffIdentity",                            
         //
         ExpressionAttributeValues: {
-            ":requirements": data.requirements || null,
-            ":pstatus": data.pstatus || null,
-            ":projectName": data.projectName || null
+            ":StaffName": data.StaffName || null,                  
+            ":Gender": data.Gender || null,
+            ":Skills": data.Skills || null,
+            ":Email": data.Email || null,
+            ":Birthdate": data.Birthdate || null,
+            ":StaffIdentity": data.StaffIdentity || null
         },
         // 'ReturnValues' specifies if and how to return the item's attributes,
         // where ALL_NEW returns all attributes of the item after the update; you
@@ -30,6 +30,6 @@ export async function main(event, context) {
         const result = await dynamoDbLib.call("update", params);
         return success({ status: true });
     } catch (e) {
-        return failure({ status: false });
+        return failure({ e });
     }
 }

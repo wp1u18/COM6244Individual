@@ -1,30 +1,34 @@
 import React, { Component } from "react";
 import { API } from "aws-amplify";
-import { FormGroup, FormControl } from "react-bootstrap";
+import { FormGroup, FormControl, Breadcrumb } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "./Projects.css";
 
 
-export default class Notes extends Component {
+export default class Projects extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
               isLoading: null,
               isDeleting: null,
-              project: null,
-              requirements: ""
+              project:null,
+              projectName: "",
+              requirements: "",
+              pstatus:"",
           };
       }
 
     async componentDidMount() {
         try {
             const project = await this.getProject();
-            const { requirements } = project;
-
+            const { requirements, pstatus, projectName } = project;
+            console.log(project)
             this.setState({
                 project,
-                requirements
+                projectName,
+                requirements,
+                pstatus
           });
         } catch (e) {
           alert(e);
@@ -32,16 +36,11 @@ export default class Notes extends Component {
                                 }
 
     getProject() {
-        console.log(this.props.match.params.id)
         return API.get("projects", `/projects/${this.props.match.params.id}`);
     }
 
     validateForm() {
-        return this.state.requirements.length > 0;
-    }
-
-    formatFilename(str) {
-        return str.replace(/^\w+-/, "");
+        return this.state.requirements.length > 0 && this.state.projectName.length > 0 && this.state.pstatus.length>0;
     }
 
     handleChange = event => {
@@ -62,8 +61,10 @@ export default class Notes extends Component {
         try {       
             await this.saveProject({
                 requirements: this.state.requirements,
+                projectName: this.state.projectName,
+                pstatus: this.state.pstatus,
             });
-            this.props.history.push("/");
+            this.props.history.push("/Project");
         } catch (e) {
             alert(e);
             this.setState({ isLoading: false });
@@ -86,7 +87,7 @@ export default class Notes extends Component {
         this.setState({ isDeleting: true });
         try {
             await this.deleteProject();
-            this.props.history.push("/");
+            this.props.history.push("/Project");
         } catch (e) {
             alert(e);
             this.setState({ isDeleting: false });
@@ -96,15 +97,33 @@ export default class Notes extends Component {
     render() {
         return (
             <div className="Projects">
+                <Breadcrumb id="bread">
+                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                    <Breadcrumb.Item href="/Project">Projects Management</Breadcrumb.Item>
+                    <Breadcrumb.Item active>Project Information</Breadcrumb.Item>
+                </Breadcrumb >
                 {this.state.project &&
                     <form onSubmit={this.handleSubmit}>
-                        <FormGroup controlId="content">
+                    <FormGroup controlId="projectName">
+                            <label>Project Name:</label>
                             <FormControl
                             onChange={this.handleChange}
-                            value={this.state.requirements}
-                            componentClass="textarea"
+                            value={this.state.projectName}                           
                             />
-                        </FormGroup>
+                    </FormGroup>
+                    <FormGroup controlId="pstatus">
+                        <label>Project Status:</label>
+                        <FormControl componentClass="select" placeholder="select" onChange={this.handleChange} value={this.state.pstatus}>
+                            <option>select</option>
+                            <option value="Pending">Pending</option>
+                            <option value="Active">Active</option>
+                            <option value="Compeleted">Compeleted</option>
+                         </FormControl>
+                    </FormGroup>
+                    <FormGroup controlId="requirements">
+                        <label>Project Requirements:</label>
+                        <FormControl onChange={this.handleChange} value={this.state.requirements} componentClass="textarea"/>                              
+                    </FormGroup>
                         <LoaderButton
                             block
                             bsStyle="primary"

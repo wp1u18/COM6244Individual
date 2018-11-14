@@ -1,11 +1,6 @@
 {
-  "body": "{\"requirements\":\"Python\",\"status\":\"completed\"}",
+  "body": "{\"StaffName\":\"WeichengPi\",\"Gender\":\"male\",\"Email\":\"wp1u18@soton.ac.uk\",\"Skills\":\"Java\",\"Birthdate\":\"1st Aug,1995\",\"StaffIdentity\":\"Staff\" }",
   "pathParameters": {
-    "id": "0d0ae770-e45d-11e8-8e67-ff10003036fd"
-  },
-  "requestContext": {
-    "identity": {
-      "cognitoIdentityId": "USER-SUB-1234"
-    }
+    "id": "ec85bd50-e7fd-11e8-8d4a-45210bcda5b2"
   }
 }

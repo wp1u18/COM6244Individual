@@ -1,11 +1,11 @@
 export default {
     s3: {
         REGION: "eu-west-2",
-        BUCKET: "notes-app-api-prod-serverlessdeploymentbucket-7c462j0479uu"
+        BUCKET: "managmentsystem-prod-serverlessdeploymentbucket-1igobt5cnqzlb"
     },
     apiGateway: {
         REGION: "eu-west-2",
-        URL: "https://hq5uzkor05.execute-api.eu-west-2.amazonaws.com/prod"
+        URL: "https://eu0ygymzo8.execute-api.eu-west-2.amazonaws.com/prod"
     },
     cognito: {
         REGION: "eu-west-2",

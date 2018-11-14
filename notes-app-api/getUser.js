@@ -3,10 +3,10 @@ import { success, failure } from "./libs/response-lib";
 
 export async function main(event, context) {
     const params = {
-        TableName: "projects",
+        TableName: "Staff",
         // 'Key' defines the partition key and sort key of the item to be retrieved
         Key: {
-            projectId: event.pathParameters.id
+            StaffId: event.pathParameters.id
         }
     };
 

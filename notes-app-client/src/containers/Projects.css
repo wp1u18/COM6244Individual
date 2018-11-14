@@ -1,8 +1,10 @@
-.Notes form {
-    padding-bottom: 15px;
+.Projects form {
+    padding-bottom: 40px;
+    font-size: 20px;
 }
 
-.Notes form textarea {
-        height: 300px;
-        font-size: 24px;
+.Projects form textarea {
+        height: 300px;      
     }
+
+  

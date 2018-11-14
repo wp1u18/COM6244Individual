@@ -1,4 +1,4 @@
-service: notes-app-api
+service: ManagmentSystem
 
 # Use the serverless-webpack plugin to transpile ES6
 plugins:
@@ -34,7 +34,7 @@ provider:
 
 functions:
   # Defines an HTTP API endpoint that calls the main function in create.js
-  # - path: url path is /notes
+  # - path: url path
   # - method: POST request
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
@@ -46,47 +46,76 @@ functions:
               path: projects
               method: post
               authorizer: aws_iam
+              cors: true
     getproject:
-         # Defines an HTTP API endpoint that calls the main function in get.js
-         # - path: url path is /notes/{id}
-         # - method: GET request  
         handler: get.main
         events:
           - http:
              path: projects/{id}
              method: get
+             authorizer: aws_iam
              cors: true
-             authorizer: aws_iam   
     listproject:
-        # Defines an HTTP API endpoint that calls the main function in list.js
-        # - path: url path is /notes
-        # - method: GET request
         handler: list.main
         events:
           - http:
               path: projects
-              method: get
-              cors: true
+              method: get             
               authorizer: aws_iam
+              cors: true
     updateproject:
-        # Defines an HTTP API endpoint that calls the main function in update.js
-        # - path: url path is /notes/{id}
-        # - method: PUT request
         handler: update.main
         events:
           - http:
               path: projects/{id}
               method: put
-              cors: true
               authorizer: aws_iam
+              cors: true
     deleteproject:
-        # Defines an HTTP API endpoint that calls the main function in delete.js
-        # - path: url path is /notes/{id}
-        # - method: DELETE request
         handler: delete.main
         events:
           - http:
               path: projects/{id}
               method: delete
-              cors: true
               authorizer: aws_iam
+              cors: true
+    createUser:
+        handler: createUser.main
+        events:
+          - http:
+              path: User
+              method: post
+              authorizer: aws_iam
+              cors: true
+    getUser: 
+        handler: getUser.main
+        events:
+          - http:
+             path: User/{id}
+             method: get
+             authorizer: aws_iam
+             cors: true
+    listUser:
+        handler: listUser.main
+        events:
+          - http:
+              path: User
+              method: get
+              authorizer: aws_iam
+              cors: true
+    updateUser:
+        handler: updateUser.main
+        events:
+          - http:
+              path: User/{id}
+              method: put
+              authorizer: aws_iam
+              cors: true
+    deleteUser:
+        handler:  deleteUser.main
+        events:
+          - http:
+              path: User/{id}
+              method: delete
+              authorizer: aws_iam
+              cors: true

@@ -5,12 +5,15 @@ import { success, failure } from "./libs/response-lib";
 export async function main(event, context) {
     const data = JSON.parse(event.body);
     const params = {
-        TableName: "projects",
+        TableName: "Staff",
         Item: {
-            projectName: data.projectName,
-            projectId: uuid.v1(),
-            requirements: data.requirements,
-            pstatus: data.pstatus
+            StaffName: data.StaffName,
+            StaffId: uuid.v1(),
+            Gender: data.Gender,
+            Email: data.Email,
+            Skills: data.Skills,
+            Birthdate: data.Birthdate,
+            StaffIdentity: data.StaffIdentity
         }
     };
 
