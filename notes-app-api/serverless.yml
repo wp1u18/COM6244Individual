@@ -119,3 +119,51 @@ functions:
               method: delete
               authorizer: aws_iam
               cors: true
+    PPending:
+        handler: PPending.main
+        events:
+          - http:
+              path: Pending
+              method: get
+              authorizer: aws_iam
+              cors: true
+    PActive:
+        handler: PActive.main
+        events:
+          - http:
+              path: Active
+              method: get
+              authorizer: aws_iam
+              cors: true
+    PCompleted:
+        handler: PCompleted.main
+        events:
+          - http:
+              path: Completed
+              method: get
+              authorizer: aws_iam
+              cors: true  
+    EmailSend:
+        handler: Email.main
+        events:
+          - http:
+              path: email
+              method: post
+              authorizer: aws_iam
+              cors: true  
+    pSearch:
+        handler: pSearch.main
+        events:
+          - http:
+              path: projects/pSearch
+              method: get
+              authorizer: aws_iam
+              cors: true  
+    sSearch:
+        handler: sSearch.main
+        events:
+          - http:
+              path: sSearch
+              method: get
+              authorizer: aws_iam
+              cors: true  

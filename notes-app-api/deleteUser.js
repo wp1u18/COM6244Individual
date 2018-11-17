@@ -1,6 +1,7 @@
 import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
 
+//This Lambda function is to delete a staff from Table Staff by their Id,the path id is defined in front end 
 export async function main(event, context) {
     const params = {
         TableName: "Staff",

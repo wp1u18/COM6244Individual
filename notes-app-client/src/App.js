@@ -25,7 +25,6 @@ class App extends Component {
                 alert(e);
             }
         }
-
         this.setState({ isAuthenticating: false });
     }
 
@@ -37,6 +36,8 @@ class App extends Component {
         this.userHasAuthenticated(false);
         this.props.history.push("/login");
     }
+
+
     render() {
         const childProps = {
             isAuthenticated: this.state.isAuthenticated,
@@ -45,7 +46,7 @@ class App extends Component {
 
         return (
             !this.state.isAuthenticating &&
-            <div className="App container">
+            <div className="App">
                 <Navbar fluid collapseOnSelect>
                     <Navbar.Header>
                         <Navbar.Brand>
@@ -58,9 +59,6 @@ class App extends Component {
                             {this.state.isAuthenticated
                                 ? <Fragment>
                                     <NavItem onClick={this.handleLogout}>Logout</NavItem>
-                                      <LinkContainer to="/Individual">
-                                    <NavItem>Personal Info</NavItem>
-                                      </LinkContainer>
                                   </Fragment>
                                 : <Fragment>
                                     <LinkContainer to="/signup">

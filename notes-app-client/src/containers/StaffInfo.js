@@ -41,7 +41,7 @@ export default class Projects extends Component {
                                 }
 
     getStaff() {
-        return API.get("projects", `/User/${this.props.match.params.id}`);
+        return API.get("User", `/User/${this.props.match.params.id}`);
     }
 
     validateForm() {
@@ -55,7 +55,7 @@ export default class Projects extends Component {
     }
 
     saveInfo(staff) {
-        return API.put("projects", `/User/${this.props.match.params.id}`, {
+        return API.put("User", `/User/${this.props.match.params.id}`, {
             body: staff
         });
     }
@@ -81,7 +81,7 @@ export default class Projects extends Component {
     
 
     deleteStaff() {
-        return API.del("projects", `/User/${this.props.match.params.id}`);
+        return API.del("User", `/User/${this.props.match.params.id}`);
     }
 
     handleDelete = async event => {

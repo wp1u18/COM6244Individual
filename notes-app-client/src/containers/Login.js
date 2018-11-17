@@ -36,22 +36,7 @@ export default class Login extends Component {
         try {
             await Auth.signIn(this.state.email, this.state.password);
             this.props.userHasAuthenticated(true);
-            console.log(this.props.match.params.id)
-            console.log("staff")
-            const staff = await this.getStaff();
-            console.log(staff)
-            const { StaffIdentity } = staff;
-            this.setState({
-                StaffIdentity
-            });         
-            if (this.state.StaffIdentity === this.staff.StaffIdentity) {
-                this.props.history.push("/ManagerHome"); }
-            else if (this.state.StaffIdentity === this.staff.StaffIdentity) {
-                this.props.history.push("/Project"); }
-            else if (this.state.StaffIdentity === this.staff.StaffIdentity) {
-                this.props.history.push("/Home");
-        }
-            this.props.history.push("/Project");
+            this.props.history.push("/");
         } catch (e) {
             alert(e.message);
         }
@@ -78,15 +63,6 @@ export default class Login extends Component {
                             type="password"
                         />
                     </FormGroup>   
-                     <FormGroup controlId="StaffIdentity" bsSize="large">
-                        <label>Identity:</label>
-                       <FormControl componentClass="select" placeholder="select" onChange={this.handleChange} value={this.state.StaffIdentity}>
-                            <option>select</option>
-                            <option value="Manager">Manager</option>
-                            <option value="Staff">Staff</option>
-                            <option value="Administrator">Administrator</option>
-                        </FormControl>
-                    </FormGroup>
                     <LoaderButton
                         block
                         bsSize="large"

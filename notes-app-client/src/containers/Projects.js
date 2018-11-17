@@ -23,7 +23,6 @@ export default class Projects extends Component {
         try {
             const project = await this.getProject();
             const { requirements, pstatus, projectName } = project;
-            console.log(project)
             this.setState({
                 project,
                 projectName,

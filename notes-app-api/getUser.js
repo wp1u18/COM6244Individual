@@ -1,6 +1,7 @@
 import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
 
+//this Lambda function is to obtain a specific staff information by staffid
 export async function main(event, context) {
     const params = {
         TableName: "Staff",

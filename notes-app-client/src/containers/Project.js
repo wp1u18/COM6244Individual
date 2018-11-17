@@ -1,20 +1,23 @@
 import React, { Component } from "react";
-import { ListGroup, ListGroupItem, Breadcrumb } from "react-bootstrap";
+import { ListGroup, ListGroupItem, Breadcrumb,Button,FormGroup, InputGroup, FormControl } from "react-bootstrap";
 import "./Project.css";
 import { API } from "aws-amplify";
-import { LinkContainer } from "react-router-bootstrap";
+import { LinkContainer} from "react-router-bootstrap";
 
 export default class Project extends Component {
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-      isLoading: true,
-      projects: []
-    };
+        this.state = {
+            projects: [],
+            psearcher: [],
+            projectName: "",
+            requirements: "",
+            pstatus: ""
+        };
     }
 
-  async componentDidMount() {
+    async componentDidMount() {
         if (!this.props.isAuthenticated) {
             return;
         }
@@ -25,15 +28,20 @@ export default class Project extends Component {
         } catch (e) {
             alert(e);
         }
-
-        this.setState({ isLoading: false });
     }
 
-  projects() {
-      return API.get("projects", "/projects");// projects is the API name,/ projects is path      
+    projects() {
+        return API.get("projects", "/projects");// projects is the API name,/ projects is path      
     }
 
-  renderProjectList(projects) {
+
+    validateForm() {
+        return this.state.Birthdate.length > 0 && this.state.Email.length > 0 && this.state.Gender.length > 0 && this.state.Skills.length > 0 && this.state.StaffName.length > 0 && this.state.StaffIdentity.length > 0;
+    }
+
+
+
+    renderProjectList(projects) {
        return [{}].concat(projects).map( (project, i) =>i !== 0
 
            ?<LinkContainer key={project.projectId} to={`/Projects/${project.projectId}`}>
@@ -45,8 +53,8 @@ export default class Project extends Component {
                </ListGroupItem>
 
            </LinkContainer>
-                                     
-           : <LinkContainer key="new" to="/Projects/new">
+
+           :<LinkContainer key="new" to="/Projects/new">
 
                <ListGroupItem>
 
@@ -58,7 +66,7 @@ export default class Project extends Component {
 
                </ListGroupItem>
 
-           </LinkContainer>
+               </LinkContainer>
         );
     }
 
@@ -76,10 +84,24 @@ export default class Project extends Component {
         <div className="project">
             <Breadcrumb>
                 <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                <Breadcrumb.Item active>Projects Management</Breadcrumb.Item>
+                <Breadcrumb.Item active>Projects Management</Breadcrumb.Item> 
+            </Breadcrumb>
+            <Breadcrumb>
+                <LinkContainer key="Pending" to="/Pending">
+                    <Breadcrumb.Item >View Pending Paojects</Breadcrumb.Item>
+                </LinkContainer>
+                <LinkContainer key="Active" to="/Active">
+                    <Breadcrumb.Item>View Active Projects</Breadcrumb.Item> 
+                </LinkContainer>
+                <LinkContainer key="Completed" to="/Completed">
+                <Breadcrumb.Item>View Completed Projects</Breadcrumb.Item> 
+                </LinkContainer>
+                <LinkContainer key="Psearch" to="/Psearch">
+                    <Breadcrumb.Item>Search Projects</Breadcrumb.Item>
+                </LinkContainer>
             </Breadcrumb>
         <ListGroup>
-                {!this.state.isLoading && this.renderProjectList(this.state.projects)}
+                {this.renderProjectList(this.state.projects)}
         </ListGroup>
       </div>
     );

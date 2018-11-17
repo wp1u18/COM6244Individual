@@ -1,6 +1,7 @@
 import * as dynamoDbLib from "./libs/dynamodb-lib";
 import { success, failure } from "./libs/response-lib";
 
+//This Lambda function is to get a specific project details by id
 export async function main(event, context) {
     const params = {
         TableName: "projects",

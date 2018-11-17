@@ -14,7 +14,10 @@ import Staff from "./containers/Staff";
 import NewStaff from "./containers/NewStaff";
 import StaffInfo from "./containers/StaffInfo";
 import Individual from "./containers/Individual";
-
+import Pending from "./containers/Pending";
+import Active from "./containers/Active";
+import Completed from "./containers/Completed";
+import Psearch from "./containers/Psearch";
 
 
 export default ({ childProps }) =>
@@ -29,6 +32,10 @@ export default ({ childProps }) =>
         <AuthenticatedRoute path="/User" exact component={Staff} props={childProps} />
         <AuthenticatedRoute path="/User/new" exact component={NewStaff} props={childProps} />
         <AuthenticatedRoute path="/User/:id" exact component={StaffInfo} props={childProps} />
+        <AuthenticatedRoute path="/Pending" exact component={Pending} props={childProps} />
+        <AuthenticatedRoute path="/Active" exact component={Active} props={childProps} />
+        <AuthenticatedRoute path="/Completed" exact component={Completed} props={childProps} />
+        <AuthenticatedRoute path="/Psearch" exact component={Psearch} props={childProps} />
         { /* Finally, catch all unmatched routes */}
         <Route component={NotFound} />
     </Switch>;

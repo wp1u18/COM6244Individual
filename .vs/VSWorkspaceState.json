@@ -1,9 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\notes-app-client",
+    "\\notes-app-api",
     "\\notes-app-client\\src"
   ],
-  "SelectedNode": "\\notes-app-client\\src\\containers",
+  "SelectedNode": "\\notes-app-api\\create.js",
   "PreviewInSolutionExplorer": false
 }

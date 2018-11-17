@@ -67,7 +67,7 @@ export default class NewProject extends Component {
                             <option>select</option>
                             <option value="Pending">Pending</option>
                             <option value="Active">Active</option>
-                            <option value="Compeleted">Compeleted</option>
+                            <option value="Completed">Completed</option>
                         </FormControl>
                     </FormGroup>
                     <FormGroup controlId="requirements">

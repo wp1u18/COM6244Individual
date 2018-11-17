@@ -11,8 +11,27 @@ export default class Home extends Component {
         this.state = {
             isLoading: null,
             isDeleting: null,
+            projects: [],
+            staffs: []
         };
     }
+
+    async componentDidMount() {
+        if (!this.props.isAuthenticated) {
+            return;
+        }
+
+        try {
+            const projects = await this.projects();
+            const staffs = await this.staffs();
+            this.setState({ projects,staffs });
+        } catch (e) {
+            alert(e);
+        }
+
+        this.setState({ isLoading: false });
+    }
+
 
     projects() {
         return API.get("projects", "/projects");// projects is the API name,/projects is path
@@ -22,37 +41,37 @@ export default class Home extends Component {
         return API.get("User", "/User");// User is the API name,/User is path
     }
 
-renderFunctions() {
-    return (
-        <div className="Home">
-            <Breadcrumb>
-                <Breadcrumb.Item to="/">Home</Breadcrumb.Item>            
-            </Breadcrumb>
-            <ListGroup>
-                <LinkContainer to="/Project">   
-                        <ListGroupItem>Projects Management</ListGroupItem>         
-                </LinkContainer>
-                <LinkContainer to="/User">                        
-                        <ListGroupItem>Staffs Management</ListGroupItem>                 
-                </LinkContainer>
-            </ListGroup>           
-        </div>
-    );
-}
+    renderFunctions(projects,staffs) {
+        return (
+            <div className="Home">
+                <Breadcrumb>
+                    <Breadcrumb.Item to="/">Home</Breadcrumb.Item>            
+                </Breadcrumb>
+                <ListGroup>
+                    <LinkContainer to="/Project">
+                        <ListGroupItem header="Projects Management">{"Current Projects Number:  " +  this.state.projects.length}</ListGroupItem>         
+                    </LinkContainer>
+                    <LinkContainer to="/User">                        
+                        <ListGroupItem header="Staffs Management">{"Current Staffs Number:  " + this.state.staffs.length}</ListGroupItem>                 
+                    </LinkContainer>
+                </ListGroup>           
+            </div>
+        );
+    }
 
-renderLander() {
-    return (
-        <div>
-           Please log in firstly
-        </div>
-    );
-}
+    renderLander() {
+        return (
+            <div>
+               Please log in firstly
+            </div>
+        );
+    }
 
-render() {
-    return (
-        <div className="Home">
-            {this.props.isAuthenticated ? this.renderFunctions() : this.renderLander()}
-        </div>
-    );
-}
+    render() {
+        return (
+            <div className="Home">
+                {this.props.isAuthenticated ? this.renderFunctions(this.state.staffs, this.state.projects) : this.renderLander()}
+            </div>
+        );
+    }
 }
