@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ListGroup, ListGroupItem, Breadcrumb, Button, FormGroup, InputGroup, FormControl, Form } from "react-bootstrap";
+import { ListGroupItem, Breadcrumb, Button, FormGroup, InputGroup, FormControl, Form } from "react-bootstrap";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 
@@ -9,16 +9,20 @@ export default class Ssearch extends Component {
 
         this.state = {
             content: null,
-            result: null,
-            projectName: ""
+            result: [],
+            StaffName: ""
         };
     }
 
-    projects(content) {
-        return API.get("User", "/sSearch", {
-            body: content
-        });// projects is the API name,/ projects is path      
+    staffs() {
+        let myInit = {
+            queryStringParameters: {
+                content: this.state.StaffName
+            }
+        }
+        return API.get("User", "/User/sSearch", myInit);
     }
+
 
     handleChange = event => {
         this.setState({
@@ -29,34 +33,13 @@ export default class Ssearch extends Component {
     handleSubmit = async event => {
         event.preventDefault();
         try {
-            const content = this.state.projectName;
-            console.log(content);
-            await this.projects({
-                content: this.state.projectName,
-            });
-            console.log(11);
+            const result = await this.staffs();
+            this.setState({ result });
+            console.log(result);
         } catch (e) {
             alert(e.message);
         }
     }
-
-    renderProjectList(content) {
-        return [{}].concat(content).map((projects, i) => i !== 0
-
-            ? <LinkContainer key={projects.projectId} to={`/Projects/${projects.projectId}`}>
-
-                <ListGroupItem header={projects.projectName}>
-
-                    {"Project status:    " + projects.pstatus}
-
-                </ListGroupItem>
-
-            </LinkContainer>
-
-            : <div></div>
-        );
-    }
-
 
     renderLander() {
         return (
@@ -66,20 +49,35 @@ export default class Ssearch extends Component {
         );
     }
 
-    renderProjects() {
-        return (
-            <div>
+    renderStaffs(result) {
+        return [{}].concat(result).map((results, i) => i !== 0
+
+            ? <LinkContainer key={results.StaffId} to={`/User/${results.StaffId}`}>
+
+                <ListGroupItem header={results.StaffName}>
+
+                    {"Skills:    " + results.Skills}
+
+                </ListGroupItem>
+
+            </LinkContainer>
+            : <div key="searching">
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Projects Management</Breadcrumb.Item>
+                    <LinkContainer to="/">
+                        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                    </LinkContainer>
+                    <LinkContainer to="User">
+                        <Breadcrumb.Item>Staffs Management</Breadcrumb.Item>
+                    </LinkContainer>
+                    <Breadcrumb.Item active>Staffs Searching</Breadcrumb.Item>
                 </Breadcrumb>
                 <Form onSubmit={this.handleSubmit}>
-                    <FormGroup bsSize="large" controlId="projectName">
+                    <FormGroup bsSize="large" controlId="StaffName">
                         <InputGroup>
                             <InputGroup.Button>
-                                <Button bsSize="large" type="submit">Search projects</Button>
+                                <Button bsSize="large" type="submit">Search Staffs</Button>
                             </InputGroup.Button>
-                            <FormControl type="text" onChange={this.handleChange} value={this.state.projectName} />
+                            <FormControl type="text" onChange={this.handleChange} value={this.state.StaffName} />
                         </InputGroup>
                     </FormGroup>
                 </Form>
@@ -90,7 +88,7 @@ export default class Ssearch extends Component {
     render() {
         return (
             <div>
-                {this.props.isAuthenticated ? this.renderProjects() : this.renderLander()}
+                {this.props.isAuthenticated ? this.renderStaffs(this.state.result) : this.renderLander()}
             </div>
         );
     }

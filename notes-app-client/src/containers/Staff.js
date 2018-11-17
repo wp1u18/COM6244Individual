@@ -38,14 +38,17 @@ export default class Staff extends Component {
                 <ListGroupItem header={staff.StaffName}>
                     {"Skills:    " + staff.Skills}
                 </ListGroupItem>
-               </LinkContainer>
-            : <LinkContainer key="new" to="/User/new">                                         
+            </LinkContainer> 
+            :
+            <LinkContainer key="new" to="/User/new">                                         
                 <ListGroupItem>
                     <h4>
                        Add a new staff
                      </h4>
                 </ListGroupItem>
             </LinkContainer>
+           
+           
         );
     }
 
@@ -61,8 +64,13 @@ export default class Staff extends Component {
         return (
             <div className="Staffs">
                 <Breadcrumb>
-                <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-            <Breadcrumb.Item active>Staffs Management</Breadcrumb.Item>
+                    <LinkContainer to="/">
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                    </LinkContainer>
+                    <Breadcrumb.Item active>Staffs Management</Breadcrumb.Item>
+                    <LinkContainer to="Ssearch">
+                        <Breadcrumb.Item >Search Staffs</Breadcrumb.Item>
+                    </LinkContainer>                        
             </Breadcrumb >
                 <ListGroup>
                     {!this.state.isLoading && this.renderProjectList(this.state.staffs)}

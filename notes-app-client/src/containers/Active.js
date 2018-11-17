@@ -10,28 +10,28 @@ export default class Active extends Component {
 
         this.state = {
             pprojects: []
-        };
+        };                                   
     }
 
     async componentDidMount() {
         if (!this.props.isAuthenticated) {
-            return;
+            return;                              //Login authentication
         }
 
         try {
-            const pprojects = await this.pprojects();
-            this.setState({ pprojects });
+            const pprojects = await this.pprojects();    //Using await approach to waite result of calling API method and store the result in pprojects 
+            this.setState({ pprojects });          //Updating state of pprojects
         } catch (e) {
             alert(e);
         }     
     }
 
     pprojects() {
-        return API.get("projects", "/Active");
+        return API.get("projects", "/Active");//Define pproject function to call API
     }
 
     renderPprojects(pprojects) {
-        return [{}].concat(pprojects).map((pproject, i) => i !== 0
+        return [{}].concat(pprojects).map((pproject, i) => i !== 0  //define a new array from pprojects and traversing the array by index
             ? <LinkContainer key={pproject.projectId} to={`/Projects/${pproject.projectId}`}>
                 <ListGroupItem header={pproject.projectName}>
 
@@ -60,8 +60,12 @@ export default class Active extends Component {
         return (
             <div className="project">
                 <Breadcrumb>
+                    <LinkContainer to="/">
                     <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="Project">Projects Management</Breadcrumb.Item>
+                </LinkContainer>
+                    <LinkContainer to="Project">
+                        <Breadcrumb.Item>Projects Management</Breadcrumb.Item>
+                    </LinkContainer>
                     <Breadcrumb.Item active>Active Projects</Breadcrumb.Item>
                 </Breadcrumb>  
                 <ListGroup>

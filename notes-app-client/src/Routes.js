@@ -1,7 +1,7 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 import AuthenticatedRoute from "./components/AuthenticatedRoute";
-import UnauthenticatedRoute from "./components/UnauthenticatedRoute"
+import UnauthenticatedRoute from "./components/UnauthenticatedRoute";
 import AppliedRoute from "./components/AppliedRoute";
 import Home from "./containers/Home";
 import Login from "./containers/Login";
@@ -18,6 +18,7 @@ import Pending from "./containers/Pending";
 import Active from "./containers/Active";
 import Completed from "./containers/Completed";
 import Psearch from "./containers/Psearch";
+import Ssearch from "./containers/Ssearch";
 
 
 export default ({ childProps }) =>
@@ -36,6 +37,7 @@ export default ({ childProps }) =>
         <AuthenticatedRoute path="/Active" exact component={Active} props={childProps} />
         <AuthenticatedRoute path="/Completed" exact component={Completed} props={childProps} />
         <AuthenticatedRoute path="/Psearch" exact component={Psearch} props={childProps} />
+        <AuthenticatedRoute path="/Ssearch" exact component={Ssearch} props={childProps} />
         { /* Finally, catch all unmatched routes */}
         <Route component={NotFound} />
     </Switch>;

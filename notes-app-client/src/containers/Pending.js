@@ -59,9 +59,12 @@ export default class Pending extends Component {
     renderProjects() {
         return (
             <div className="project">
-                <Breadcrumb>
+                <Breadcrumb><LinkContainer to="/">
                     <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="Project">Projects Management</Breadcrumb.Item>
+                </LinkContainer>
+                    <LinkContainer to="Project">
+                        <Breadcrumb.Item>Projects Management</Breadcrumb.Item>
+                    </LinkContainer>
                     <Breadcrumb.Item active>Pending Projects</Breadcrumb.Item>
                 </Breadcrumb>  
                 <ListGroup>

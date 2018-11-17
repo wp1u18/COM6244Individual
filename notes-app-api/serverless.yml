@@ -33,9 +33,9 @@ provider:
       Resource: "arn:aws:dynamodb:eu-west-2:*:*"
 
 functions:
-  # Defines an HTTP API endpoint that calls the main function in create.js
+  # Defines an HTTP API endpoint that calls the main function in js documents
   # - path: url path
-  # - method: POST request
+  # - method: request type
   # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
   #     domain api call
   # - authorizer: authenticate using the AWS IAM role
@@ -147,7 +147,7 @@ functions:
         handler: Email.main
         events:
           - http:
-              path: email
+              path: User/email
               method: post
               authorizer: aws_iam
               cors: true  
@@ -163,7 +163,7 @@ functions:
         handler: sSearch.main
         events:
           - http:
-              path: sSearch
+              path: User/sSearch
               method: get
               authorizer: aws_iam
               cors: true  

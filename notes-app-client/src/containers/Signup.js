@@ -11,11 +11,11 @@ export default class Signup extends Component {
         this.state = {
             isLoading: false,
             newUser: null,
-            //receiver:null,
+            einfo:null,
             email: "",
             password: "",
-            confirmPassword: ""
-           
+            confirmPassword: "",
+            receiver:""         
         };
     }
 
@@ -33,28 +33,26 @@ export default class Signup extends Component {
         });
     }
 
-  
-    //email(receiver) {
-    //    console.log(receiver);
-    //    return API.post("Sendemail", "/email", {
-    //        body: receiver
-    //    });
-    //    };
+    Sendemail(einfo){                   
+        return API.post("User", "/User/email",{            
+                body:einfo              
+            });     
+    }
     
-
     handleSubmit = async event => {
         event.preventDefault();
         this.setState({ isLoading: true });
-        try {
-            
+        try {           
             const newUser = await Auth.signUp({
                 username: this.state.email,
                 password: this.state.password
             });
-            this.setState({newUser });                             
-            //await this.email({
-            //    receiver: this.state.email,             
-            //});
+            this.setState({ newUser });              
+
+            await this.Sendemail({
+                receiver: this.state.email
+            });
+
         } catch (e) {
             alert(e.message);
         }

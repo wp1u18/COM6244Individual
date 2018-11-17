@@ -9,7 +9,7 @@ export default class Home extends Component {
         super(props);
 
         this.state = {
-            isLoading: null,
+            isLoading: null,                    
             isDeleting: null,
             projects: [],
             staffs: []
@@ -23,7 +23,7 @@ export default class Home extends Component {
 
         try {
             const projects = await this.projects();
-            const staffs = await this.staffs();
+            const staffs = await this.staffs();//Calling projects and staffs method and store results
             this.setState({ projects,staffs });
         } catch (e) {
             alert(e);
@@ -34,18 +34,18 @@ export default class Home extends Component {
 
 
     projects() {
-        return API.get("projects", "/projects");// projects is the API name,/projects is path
+        return API.get("projects", "/projects");// projects is the API name,/projects is method path in serverless.yml 
     }
 
     staffs() {
-        return API.get("User", "/User");// User is the API name,/User is path
+        return API.get("User", "/User");// User is the API name,/User is method path in serverless.yml 
     }
 
     renderFunctions(projects,staffs) {
         return (
             <div className="Home">
-                <Breadcrumb>
-                    <Breadcrumb.Item to="/">Home</Breadcrumb.Item>            
+                <Breadcrumb>                
+                        <Breadcrumb.Item active>Home</Breadcrumb.Item>                     
                 </Breadcrumb>
                 <ListGroup>
                     <LinkContainer to="/Project">

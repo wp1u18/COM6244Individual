@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ListGroup, ListGroupItem, Breadcrumb, Button, FormGroup, InputGroup, FormControl, Form } from "react-bootstrap";
+import { ListGroupItem, Breadcrumb, Button, FormGroup, InputGroup, FormControl, Form } from "react-bootstrap";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 
@@ -8,37 +8,19 @@ export default class Psearch extends Component {
         super(props);
 
         this.state = {
-            content: null,   
+            content: null, 
+            result:[],
             projectName: ""
         };
     }
-    //projects(content) {
-    //    console.log(content);
-    //    return API.get("projects", "/projects/pSearch", {
-    //        body: "content"
-    //    });
-    //}// projects is the API name,/ projects is path 
-    //    };
-    //projects(content) {
-    //    console.log(11);
-    //    let myinit = {
-    //        headers: {},
-    //        response: true,
-    //        body: {
-    //            content: "a"
-    //        }
-    //    }
-     //          return API.get("pSearch", "/pSearch", myinit)
-     //              "body": content
-     //                       });     
 
-    async projects() {
-        let myInit = { // OPTIONAL
-            body: {
-                content:"e"
-            } // OPTIONAL
+    projects() {
+        let myInit = { 
+            queryStringParameters: {
+                content: this.state.projectName
+            } 
         }
-        return await API.get("projects", "pSearch", myInit);
+        return API.get("projects", "/projects/pSearch", myInit);
     }
 
 
@@ -50,32 +32,14 @@ export default class Psearch extends Component {
 
     handleSubmit = async event => {
         event.preventDefault();
-        try {
-            console.log(this.state.projectName);
-            this.projects();
-            console.log(11111);
+        try {         
+            const result = await this.projects();
+            this.setState({ result });
+            console.log(result);
         } catch (e) {
             alert(e.message);
         }
     }
-
-    renderProjectList(content) {
-        return [{}].concat(content).map((projects, i) => i !== 0
-
-            ? <LinkContainer key={projects.projectId} to={`/Projects/${projects.projectId}`}>
-
-                <ListGroupItem header={projects.projectName}>
-
-                    {"Project status:    " + projects.pstatus}
-
-                </ListGroupItem>
-
-            </LinkContainer>
-
-            : <div></div>
-        );
-    }
-
 
     renderLander() {
         return (
@@ -85,13 +49,28 @@ export default class Psearch extends Component {
         );
     }
 
-    renderProjects() {
-        return (
-            <div>
-                <Breadcrumb>
-                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item active>Projects Management</Breadcrumb.Item>
-                </Breadcrumb>
+    renderProjects(result) {
+         return [{}].concat(result).map((results, i) => i !== 0
+
+            ? <LinkContainer key={results.projectId} to={`/Projects/${results.projectId}`}>
+
+                <ListGroupItem header={results.projectName}>
+
+                    {"Project status:    " + results.pstatus}
+
+                </ListGroupItem>
+
+             </LinkContainer>
+             : <div key="searching">
+                 <Breadcrumb>
+                     <LinkContainer to="/">
+                         <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                     </LinkContainer>
+                     <LinkContainer to="Project">
+                         <Breadcrumb.Item>Projects Management</Breadcrumb.Item>
+                     </LinkContainer>
+                     <Breadcrumb.Item active>Project Searching</Breadcrumb.Item>
+                 </Breadcrumb>  
                 <Form onSubmit={this.handleSubmit}>
                     <FormGroup bsSize="large" controlId="projectName">
                     <InputGroup>
@@ -109,7 +88,7 @@ export default class Psearch extends Component {
     render() {
         return (
             <div>
-                {this.props.isAuthenticated ? this.renderProjects() : this.renderLander()}
+                {this.props.isAuthenticated ? this.renderProjects(this.state.result) : this.renderLander()}
             </div>
         );
     }

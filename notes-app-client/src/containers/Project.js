@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ListGroup, ListGroupItem, Breadcrumb,Button,FormGroup, InputGroup, FormControl } from "react-bootstrap";
+import { ListGroup, ListGroupItem, Breadcrumb } from "react-bootstrap";
 import "./Project.css";
 import { API } from "aws-amplify";
 import { LinkContainer} from "react-router-bootstrap";
@@ -82,8 +82,9 @@ export default class Project extends Component {
     renderProjects() {
     return (
         <div className="project">
-            <Breadcrumb>
-                <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+            <Breadcrumb><LinkContainer to="/">
+                <Breadcrumb.Item>Home</Breadcrumb.Item>
+            </LinkContainer>
                 <Breadcrumb.Item active>Projects Management</Breadcrumb.Item> 
             </Breadcrumb>
             <Breadcrumb>

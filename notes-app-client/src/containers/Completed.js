@@ -15,7 +15,7 @@ export default class Completed extends Component {
 
     async componentDidMount() {
         if (!this.props.isAuthenticated) {
-            return;
+            return;                         //Login authentication
         }
 
         try {
@@ -61,8 +61,12 @@ export default class Completed extends Component {
         return (
             <div className="project">
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="Project">Projects Management</Breadcrumb.Item>
+                    <LinkContainer to="/">
+                        <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
+                    </LinkContainer>
+                    <LinkContainer to="Project">
+                        <Breadcrumb.Item>Projects Management</Breadcrumb.Item>
+                    </LinkContainer>
                     <Breadcrumb.Item active>Completed Projects</Breadcrumb.Item>
                 </Breadcrumb>  
                 <ListGroup>

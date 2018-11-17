@@ -59,9 +59,9 @@ export default class NewStaff extends Component {
     render() {
         return (
             <div className="NewStaff">
-                <Breadcrumb>
-                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/User">Staffs Management</Breadcrumb.Item>
+                <Breadcrumb>                    
+                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>                    
+                        <Breadcrumb.Item href="/User">Staffs Management</Breadcrumb.Item>
                     <Breadcrumb.Item active>Add new staff</Breadcrumb.Item>
                 </Breadcrumb >
                 <form onSubmit={this.handleSubmit}>

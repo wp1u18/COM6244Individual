@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component,LinkContainer } from "react";
 import { FormGroup, FormControl, Breadcrumb } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "./NewProject.css";
@@ -52,8 +52,12 @@ export default class NewProject extends Component {
         return (
             <div className="NewProject">
                 <Breadcrumb>
-                    <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
-                    <Breadcrumb.Item href="/Project">Projects Management</Breadcrumb.Item>
+                    <LinkContainer to="/">
+                        <Breadcrumb.Item>Home</Breadcrumb.Item>
+                </LinkContainer>
+                    <LinkContainer to="/Project">
+                        <Breadcrumb.Item>Projects Management</Breadcrumb.Item>
+                    </LinkContainer>
                     <Breadcrumb.Item active>New Project</Breadcrumb.Item>
                 </Breadcrumb >
                 <form onSubmit={this.handleSubmit}>

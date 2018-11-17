@@ -28,16 +28,6 @@ Amplify.configure({
                 endpoint: config.apiGateway.URL,
                 region: config.apiGateway.REGION
             },
-            {
-                name: "Sendemail",
-                endpoint: config.apiGateway.URL,
-                region: config.apiGateway.REGION
-            },
-            {
-                name: "sSearch",
-                endpoint: config.apiGateway.URL,
-                region: config.apiGateway.REGION
-            }
         ]
     }
 });
