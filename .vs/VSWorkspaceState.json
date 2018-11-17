@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\notes-app-api",
+    "\\notes-app-client",
     "\\notes-app-client\\src"
   ],
-  "SelectedNode": "\\notes-app-api\\create.js",
+  "SelectedNode": "\\notes-app-api\\serverless.yml",
   "PreviewInSolutionExplorer": false
 }
