@@ -5,7 +5,7 @@ import { success, failure } from "./libs/response-lib";
 export async function main(event, context) {
     const params = {
         TableName: "projects",
-        ProjectionExpression: "projectName,projectId,pstatus",                 //A string that identifies one or more attributes to retrieve from the specified table or index
+        ProjectionExpression: "projectName,projectId,pstatus",                 //A projection expression is a string that identifies the attributes you want.
         FilterExpression: "contains (#p,:v)",                                  /*FilterExpression filters the result which retrieves from Table*/       
         ExpressionAttributeNames: { "#p": "projectName" },                     //ExpressionAttributeNames defines the AttributeName scanned  
         ExpressionAttributeValues: { ":v": event.queryStringParameters.content}//ExpressionAttributeValue defines the Attribute value scanned  

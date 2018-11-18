@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ListGroup, ListGroupItem, Breadcrumb } from "react-bootstrap";
+import { ListGroup, ListGroupItem, Breadcrumb, ButtonToolbar, Button } from "react-bootstrap";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 import "./Staff.css";
@@ -75,6 +75,11 @@ export default class Staff extends Component {
                 <ListGroup>
                     {!this.state.isLoading && this.renderProjectList(this.state.staffs)}
                 </ListGroup>
+                <ButtonToolbar>
+                    <LinkContainer to="User/Allocation">
+                        <Button bsStyle="primary" >Staffs Allocation</Button>
+                    </LinkContainer>
+                </ButtonToolbar>;
             </div>
         );
     }

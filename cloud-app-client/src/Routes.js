@@ -19,6 +19,7 @@ import Active from "./containers/Active";
 import Completed from "./containers/Completed";
 import Psearch from "./containers/Psearch";
 import Ssearch from "./containers/Ssearch";
+import Allocation from "./containers/Allocation";
 
 
 export default ({ childProps }) =>
@@ -30,14 +31,17 @@ export default ({ childProps }) =>
         <AuthenticatedRoute path="/Individual" exact component={Individual} props={childProps} />
         <AuthenticatedRoute path="/Projects/new" exact component={NewProject} props={childProps} />
         <AuthenticatedRoute path="/Projects/:id" exact component={Projects} props={childProps} />
-        <AuthenticatedRoute path="/User" exact component={Staff} props={childProps} />
-        <AuthenticatedRoute path="/User/new" exact component={NewStaff} props={childProps} />
-        <AuthenticatedRoute path="/User/:id" exact component={StaffInfo} props={childProps} />
         <AuthenticatedRoute path="/Pending" exact component={Pending} props={childProps} />
         <AuthenticatedRoute path="/Active" exact component={Active} props={childProps} />
         <AuthenticatedRoute path="/Completed" exact component={Completed} props={childProps} />
-        <AuthenticatedRoute path="/Psearch" exact component={Psearch} props={childProps} />
+        <AuthenticatedRoute path="/Psearch" exact component={Psearch} props={childProps} />       
+        <AuthenticatedRoute path="/User" exact component={Staff} props={childProps} />
+        <AuthenticatedRoute path="/User/new" exact component={NewStaff} props={childProps} />
+        <AuthenticatedRoute path="/User/:id" exact component={StaffInfo} props={childProps} />
+        <AuthenticatedRoute path="/User/Allocation" exact component={Allocation} props={childProps} />
         <AuthenticatedRoute path="/Ssearch" exact component={Ssearch} props={childProps} />
+        
+      
         { /* Finally, catch all unmatched routes */}
         <Route component={NotFound} />
     </Switch>;

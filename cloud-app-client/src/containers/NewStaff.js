@@ -30,6 +30,13 @@ export default class NewStaff extends Component {
     }
 
 
+    Sendemail(einfo) {
+        console.log(einfo);
+        return API.post("User", "/User/email", {
+            body: einfo
+        });
+    }
+
     handleSubmit = async event => {
         event.preventDefault();
         this.setState({ isLoading: true });
@@ -43,6 +50,11 @@ export default class NewStaff extends Component {
                 StaffName: this.state.StaffName,
                 StaffIdentity: this.state.StaffIdentity
             });
+            console.log(this.state.Email);
+            const result = await this.Sendemail({
+                receiver: this.state.Email
+            });
+            console.log(result);
             this.props.history.push("/User");
         } catch (e) {
             alert(e);

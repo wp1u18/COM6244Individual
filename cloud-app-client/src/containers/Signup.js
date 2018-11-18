@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Alert, FormGroup, FormControl, ControlLabel, Button } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "./Signup.css";
-import { Auth, API } from "aws-amplify";
+import { Auth } from "aws-amplify";
 
 export default class Signup extends Component {
     constructor(props) {
@@ -11,11 +11,9 @@ export default class Signup extends Component {
         this.state = {
             isLoading: false,
             newUser: null,
-            einfo:null,
             email: "",
             password: "",
-            confirmPassword: "",
-            receiver:""         
+            confirmPassword: "",        
         };
     }
 
@@ -32,12 +30,6 @@ export default class Signup extends Component {
             [event.target.id]: event.target.value
         });
     }
-
-    Sendemail(einfo){                   
-        return API.post("User", "/User/email",{            
-                body:einfo              
-            });     
-    }
     
     handleSubmit = async event => {
         event.preventDefault();
@@ -47,12 +39,7 @@ export default class Signup extends Component {
                 username: this.state.email,
                 password: this.state.password
             });
-            this.setState({ newUser });              
-
-            await this.Sendemail({
-                receiver: this.state.email
-            });
-
+            this.setState({ newUser });                    
         } catch (e) {
             alert(e.message);
         }

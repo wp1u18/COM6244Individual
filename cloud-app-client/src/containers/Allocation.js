@@ -1,11 +1,10 @@
 import React, { Component } from "react";
-import { API } from "aws-amplify";
 import { FormGroup, FormControl, Breadcrumb } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
-import "./StaffInfo.css";
+import "./NewProject.css";
+import { API } from "aws-amplify";
 
-
-export default class Projects extends Component {
+export default class Allocation extends Component {
     constructor(props) {
         super(props);
 
@@ -18,9 +17,9 @@ export default class Projects extends Component {
             Gender: "",
             Skills: "",
             StaffName: "",
-            StaffIdentity:""
-          };
-      }
+            StaffIdentity: ""
+        };
+    }
 
     async componentDidMount() {
         try {
@@ -34,11 +33,11 @@ export default class Projects extends Component {
                 Skills,
                 StaffName,
                 StaffIdentity
-          });
+            });
         } catch (e) {
-          alert(e);
+            alert(e);
         }
-                                }
+    }
 
     getStaff() {
         return API.get("User", `/User/${this.props.match.params.id}`);
@@ -63,7 +62,7 @@ export default class Projects extends Component {
     handleSubmit = async event => {
         event.preventDefault();
         this.setState({ isLoading: true });
-        try {       
+        try {
             await this.saveInfo({
                 Birthdate: this.state.Birthdate,
                 Email: this.state.Email,
@@ -78,7 +77,7 @@ export default class Projects extends Component {
             this.setState({ isLoading: false });
         }
     }
-    
+
 
     deleteStaff() {
         return API.del("User", `/User/${this.props.match.params.id}`);
@@ -95,7 +94,7 @@ export default class Projects extends Component {
         this.setState({ isDeleting: true });
         try {
             await this.deleteStaff();
-            this.props.history.push("/User");
+            this.props.history.push("/");
         } catch (e) {
             alert(e);
             this.setState({ isDeleting: false });
@@ -111,39 +110,39 @@ export default class Projects extends Component {
                     <Breadcrumb.Item active>Staff Information</Breadcrumb.Item>
                 </Breadcrumb >
                 {this.state.staff &&
-                        <form onSubmit={this.handleSubmit}>
-                            <FormGroup controlId="StaffName">
-                                <label>Name:</label>
-                                <FormControl onChange={this.handleChange} value={this.state.StaffName} />
-                            </FormGroup>
-                            <FormGroup controlId="Gender">
-                                <label>Gender:</label>
-                                <FormControl componentClass="select" placeholder="select" onChange={this.handleChange} value={this.state.Gender}>
-                                    <option>select</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                </FormControl>
-                            </FormGroup>
-                            <FormGroup controlId="Birthdate">
-                                <label>Birthdate:</label>
-                                <FormControl autoFocus type="date" onChange={this.handleChange} value={this.state.Birthdate} />
-                            </FormGroup>
-                            <FormGroup controlId="Email">
-                                <label>Email:</label>
-                                <FormControl autoFocus type="email" placeholder="admin@example.com" onChange={this.handleChange} value={this.state.Email} />
-                            </FormGroup>
-                            <FormGroup controlId="Skills">
-                                <label>Skills:</label>
-                                <FormControl onChange={this.handleChange} value={this.state.Skills} />
-                    </FormGroup>
-                    <FormGroup controlId="StaffIdentity">
-                        <label>Identity:</label>
-                        <FormControl componentClass="select" placeholder="select" onChange={this.handleChange} value={this.state.StaffIdentity}>
-                            <option>select</option>
-                            <option value="Manager">Manager</option>
-                            <option value="Staff">Staff</option>
-                        </FormControl>
-                    </FormGroup>
+                    <form onSubmit={this.handleSubmit}>
+                        <FormGroup controlId="StaffName">
+                            <label>Name:</label>
+                            <FormControl onChange={this.handleChange} value={this.state.StaffName} />
+                        </FormGroup>
+                        <FormGroup controlId="Gender">
+                            <label>Gender:</label>
+                            <FormControl componentClass="select" placeholder="select" onChange={this.handleChange} value={this.state.Gender}>
+                                <option>select</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </FormControl>
+                        </FormGroup>
+                        <FormGroup controlId="Birthdate">
+                            <label>Birthdate:</label>
+                            <FormControl autoFocus type="date" onChange={this.handleChange} value={this.state.Birthdate} />
+                        </FormGroup>
+                        <FormGroup controlId="Email">
+                            <label>Email:</label>
+                            <FormControl autoFocus type="email" placeholder="admin@example.com" onChange={this.handleChange} value={this.state.Email} />
+                        </FormGroup>
+                        <FormGroup controlId="Skills">
+                            <label>Skills:</label>
+                            <FormControl onChange={this.handleChange} value={this.state.Skills} />
+                        </FormGroup>
+                        <FormGroup controlId="StaffIdentity">
+                            <label>Identity:</label>
+                            <FormControl componentClass="select" placeholder="select" onChange={this.handleChange} value={this.state.StaffIdentity}>
+                                <option>select</option>
+                                <option value="Manager">Manager</option>
+                                <option value="Staff">Staff</option>
+                            </FormControl>
+                        </FormGroup>
                         <LoaderButton
                             block
                             bsStyle="primary"
