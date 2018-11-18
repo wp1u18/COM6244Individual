@@ -17,9 +17,8 @@ export default class Pending extends Component {
         if (!this.props.isAuthenticated) {
             return;
         }
-
         try {
-            const pprojects = await this.pprojects();
+            const pprojects = await this.pprojects();                            //Callinhg function to get pending projects data 
             this.setState({ pprojects });
         } catch (e) {
             alert(e);
@@ -27,11 +26,11 @@ export default class Pending extends Component {
     }
 
     pprojects() {
-        return API.get("projects", "/Pending");
+        return API.get("projects", "/Pending");                           //Obtain pending projects method
     }
 
     renderPprojects(pprojects) {
-        return [{}].concat(pprojects).map((pproject, i) => i !== 0
+        return [{}].concat(pprojects).map((pproject, i) => i !== 0                            //List pending projects
             ? <LinkContainer key={pproject.projectId} to={`/Projects/${pproject.projectId}`}>
                 <ListGroupItem header={pproject.projectName}>
 

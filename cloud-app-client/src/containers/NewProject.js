@@ -20,6 +20,12 @@ export default class NewProject extends Component {
         return this.state.requirements.length > 0 && this.state.projectName.length > 0 && this.state.pstatus.length > 0;
     }
 
+    createProject(projects) {
+            return API.post("projects", "/projects", {
+                body: projects
+            });
+    }
+
     handleChange = event => {
         this.setState({
             [event.target.id]: event.target.value
@@ -30,7 +36,7 @@ export default class NewProject extends Component {
         event.preventDefault();
         this.setState({ isLoading: true });
         try {
-            await this.createProject({
+            await this.createProject({                           //Calling createProject method and pass data 
                 requirements: this.state.requirements,
                 projectName: this.state.projectName,
                 pstatus: this.state.pstatus
@@ -40,12 +46,6 @@ export default class NewProject extends Component {
             alert(e);
             this.setState({ isLoading: false });
         }
-    }
-
-    createProject(projects) {
-        return API.post("projects", "/projects", {
-            body: projects
-        });
     }
 
     render() {

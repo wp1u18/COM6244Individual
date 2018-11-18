@@ -17,7 +17,7 @@ export default class Signup extends Component {
         };
     }
 
-    validateForm() {
+    validateForm() {                   //Form content validation
         return (
             this.state.email.length > 0 &&
             this.state.password.length > 0 &&
@@ -28,7 +28,7 @@ export default class Signup extends Component {
     handleChange = event => {
         this.setState({
             [event.target.id]: event.target.value
-        });
+        });                 //change value of variable with data input 
     }
     
     handleSubmit = async event => {
@@ -38,28 +38,28 @@ export default class Signup extends Component {
             const newUser = await Auth.signUp({
                 username: this.state.email,
                 password: this.state.password
-            });
-            this.setState({ newUser });                    
+            });                              //Calling method to submitt signup info to Cognito user pool 
+            this.setState({ newUser });                   
         } catch (e) {
             alert(e.message);
         }
         this.setState({ isLoading: false });
     }
 
-    handleRequestSubmit = async event => {
-        event.preventDefault();
+    handleRequestSubmit = async event => {      
+        event.preventDefault();                      
         try {
-            this.props.history.push("/Login");
+            this.props.history.push("/Login");//redirect
             
         } catch (e) {
             alert(e.message);
-            this.setState({ isLoading: false });
+            this.setState({ isLoading: false }); 
         }
     }
 
-    renderRequestForm() {
+    renderRequestForm() {                    //Interface after submit signup form
         return (
-            <form onSubmit={this.handleRequestSubmit}>
+            <form onSubmit={this.handleRequestSubmit}>  
                 <Alert bsStyle="warning">
                     Your request has been sent to administors,please waiting for confitmation
                </Alert>
@@ -68,7 +68,7 @@ export default class Signup extends Component {
         );
     }
 
-    renderForm() {
+    renderForm() {                       //Interface before submit signup form
         return (
             <form onSubmit={this.handleSubmit}>
                 <FormGroup controlId="email" bsSize="large">
@@ -112,7 +112,7 @@ export default class Signup extends Component {
     render() {
         return (
             <div className="Signup">
-                {this.state.newUser === null
+                {this.state.newUser === null            
                     ? this.renderForm()
                     : this.renderRequestForm()}
             </div>

@@ -31,7 +31,7 @@ export default class Project extends Component {
     }
 
     projects() {
-        return API.get("projects", "/projects");// projects is the API name,/ projects is path      
+        return API.get("projects", "/projects");     // Define this method to get all projects info      
     }
 
 
@@ -42,7 +42,7 @@ export default class Project extends Component {
 
 
     renderProjectList(projects) {
-       return [{}].concat(projects).map( (project, i) =>i !== 0
+       return [{}].concat(projects).map( (project, i) =>i !== 0                   //list all retrieved projects result
 
            ?<LinkContainer key={project.projectId} to={`/Projects/${project.projectId}`}>
 

@@ -21,8 +21,8 @@ export default class Projects extends Component {
 
     async componentDidMount() {
         try {
-            const project = await this.getProject();
-            const { requirements, pstatus, projectName } = project;
+            const project = await this.getProject();           //Calling getProject method 
+            const { requirements, pstatus, projectName } = project;//Assign value to variables
             this.setState({
                 project,
                 projectName,
@@ -34,7 +34,7 @@ export default class Projects extends Component {
         }
                                 }
 
-    getProject() {
+    getProject() {                           //Define getProject method to get a specific project info 
         return API.get("projects", `/projects/${this.props.match.params.id}`);
     }
 
@@ -51,14 +51,14 @@ export default class Projects extends Component {
     saveProject(projects) {
         return API.put("projects", `/projects/${this.props.match.params.id}`, {
             body: projects
-        });
+        });                     //Update project info method
     }
 
     handleSubmit = async event => {
         event.preventDefault();
         this.setState({ isLoading: true });
         try {       
-            await this.saveProject({
+            await this.saveProject({            //Update project info method and pass variables
                 requirements: this.state.requirements,
                 projectName: this.state.projectName,
                 pstatus: this.state.pstatus,
@@ -73,7 +73,7 @@ export default class Projects extends Component {
 
     deleteProject() {
         return API.del("projects", `/projects/${this.props.match.params.id}`);
-    }
+    }                   //Defien a method to delete a project
 
     handleDelete = async event => {
         event.preventDefault();
@@ -85,7 +85,7 @@ export default class Projects extends Component {
         }
         this.setState({ isDeleting: true });
         try {
-            await this.deleteProject();
+            await this.deleteProject();   //Calling method to delete a project
             this.props.history.push("/Project");
         } catch (e) {
             alert(e);

@@ -14,13 +14,14 @@ export default class Psearch extends Component {
         };
     }
 
-    projects() {
+    searchProjects() {
         let myInit = { 
             queryStringParameters: {
                 content: this.state.projectName
-            } 
+            }                                     //define myinit to include the request parameter
         }
-        return API.get("projects", "/projects/pSearch", myInit);
+        return API.get("projects", "/projects/pSearch", myInit);//Define a method to retrieve 
+                                                                //project which contains keyword of seacrhing
     }
 
 
@@ -33,7 +34,7 @@ export default class Psearch extends Component {
     handleSubmit = async event => {
         event.preventDefault();
         try {         
-            const result = await this.projects();
+            const result = await this.searchProjects();//Calling searching method
             this.setState({ result });
             console.log(result);
         } catch (e) {

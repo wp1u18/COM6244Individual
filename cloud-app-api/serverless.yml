@@ -120,14 +120,14 @@ functions:
               authorizer: aws_iam
               cors: true
     PPending:
-        handler: PPending.main
+        handler: PPending.main          //list pending projects
         events:
           - http:
               path: Pending
               method: get
               authorizer: aws_iam
               cors: true
-    PActive:
+    PActive:                           //list active projects
         handler: PActive.main
         events:
           - http:
@@ -135,7 +135,7 @@ functions:
               method: get
               authorizer: aws_iam
               cors: true
-    PCompleted:
+    PCompleted:                        //list completed projects
         handler: PCompleted.main
         events:
           - http:
@@ -143,7 +143,7 @@ functions:
               method: get
               authorizer: aws_iam
               cors: true  
-    EmailSend:
+    EmailSend:                            
         handler: Email.main
         events:
           - http:
@@ -151,7 +151,7 @@ functions:
               method: post
               authorizer: aws_iam
               cors: true  
-    pSearch:
+    pSearch:                           //project searching fuction
         handler: pSearch.main
         events:
           - http:
@@ -159,7 +159,7 @@ functions:
               method: get
               authorizer: aws_iam
               cors: true  
-    sSearch:
+    sSearch:                           //staff searching fuction
         handler: sSearch.main
         events:
           - http:

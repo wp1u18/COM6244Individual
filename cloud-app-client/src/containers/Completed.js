@@ -32,7 +32,7 @@ export default class Completed extends Component {
     }
 
     renderPprojects(pprojects) {
-        return [{}].concat(pprojects).map((pproject, i) => i !== 0
+        return [{}].concat(pprojects).map((pproject, i) => i !== 0                                       //List all result from pprojects method return
             ? <LinkContainer key={pproject.projectId} to={`/Projects/${pproject.projectId}`}>
                 <ListGroupItem header={pproject.projectName}>
 

@@ -9,7 +9,7 @@ export async function main(event, context) {
         Destination: {
             ToAddresses: [data.receiver]
         },
-        Message: {
+        Message: {                              
             Body: {
                 Text: { 
                     Data: "Congratulations,new staff has been add to internal system"
@@ -19,7 +19,7 @@ export async function main(event, context) {
                 Data: "Confirmation"
             }
         },
-Source: "457013067@qq.com"
+Source: "457013067@qq.com"                           
     };
 
 

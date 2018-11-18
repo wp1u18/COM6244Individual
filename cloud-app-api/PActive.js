@@ -3,6 +3,7 @@ import { success, failure } from "./libs/response-lib";
 
 //This Lambda function is to retrieve all active projects 
 export async function main(event, context) {
+
     const params = {
         TableName: "projects",
         FilterExpression: "#p = :v",//FilterExpression filters the result which retrieves from Table 

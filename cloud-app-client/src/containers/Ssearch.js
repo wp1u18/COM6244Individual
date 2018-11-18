@@ -14,14 +14,14 @@ export default class Ssearch extends Component {
         };
     }
 
-    staffs() {
+    searchStaff() {                  //searching staff method
         let myInit = {
             queryStringParameters: {
                 content: this.state.StaffName
             }
         }
         return API.get("User", "/User/sSearch", myInit);
-    }
+    }                            //Calling Lambda function by API
 
 
     handleChange = event => {
@@ -33,9 +33,9 @@ export default class Ssearch extends Component {
     handleSubmit = async event => {
         event.preventDefault();
         try {
-            const result = await this.staffs();
+            const result = await this.searchStaff(); //Calling searchstaff method 
             this.setState({ result });
-            console.log(result);
+            console.log(result);   //test
         } catch (e) {
             alert(e.message);
         }
@@ -89,7 +89,7 @@ export default class Ssearch extends Component {
         return (
             <div>
                 {this.props.isAuthenticated ? this.renderStaffs(this.state.result) : this.renderLander()}
-            </div>
+            </div>   
         );
     }
 }

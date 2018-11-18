@@ -22,7 +22,7 @@ export default class Login extends Component {
     }
 
     getStaff() {
-        return API.get("projects", `/User/${this.props.match.params.id}`);
+        return API.get("projects", `/User/${this.props.match.params.id}`);  //Defien a method to retrieve a specific project information  
     }
 
     handleChange = event => {
@@ -34,7 +34,7 @@ export default class Login extends Component {
     handleSubmit = async event => {
         event.preventDefault();
         try {
-            await Auth.signIn(this.state.email, this.state.password);
+            await Auth.signIn(this.state.email, this.state.password);     //login
             this.props.userHasAuthenticated(true);
             this.props.history.push("/");
         } catch (e) {

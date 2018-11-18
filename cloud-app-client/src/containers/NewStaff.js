@@ -30,7 +30,7 @@ export default class NewStaff extends Component {
     }
 
 
-    Sendemail(einfo) {
+    Sendemail(einfo) {                                   //Calling API to call sendemai Lambda function
         console.log(einfo);
         return API.post("User", "/User/email", {
             body: einfo
@@ -49,11 +49,11 @@ export default class NewStaff extends Component {
                 Skills: this.state.Skills,
                 StaffName: this.state.StaffName,
                 StaffIdentity: this.state.StaffIdentity
-            });
+            });                                            //Adding a new staff to table
             console.log(this.state.Email);
             const result = await this.Sendemail({
                 receiver: this.state.Email
-            });
+            });                                          //After adding a new staff,calling Sendemail function to inform staff 
             console.log(result);
             this.props.history.push("/User");
         } catch (e) {
@@ -63,12 +63,12 @@ export default class NewStaff extends Component {
     }
 
     AddStaff(staffs) {
-        return API.post("User", "/User", {
+        return API.post("User", "/User", {             //Calling API to call add staff Lambda function
             body: staffs
         });
     }
 
-    render() {
+    render() {                                              //Interface of add new staff
         return (
             <div className="NewStaff">
                 <Breadcrumb>                    

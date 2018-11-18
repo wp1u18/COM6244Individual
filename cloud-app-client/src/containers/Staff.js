@@ -29,11 +29,12 @@ export default class Staff extends Component {
     }
 
     staffs() {
-        return API.get("User", "/User");// User is the API name,/User is path
+        return API.get("User", "/User");//Retrieve all staffs info menthod
+                                        //User is the API name, /User is path
     }
 
     renderProjectList(staffs) {
-        return [{}].concat(staffs).map((staff, i) => i !== 0
+        return [{}].concat(staffs).map((staff, i) => i !== 0            //list staffs info with name and skills
             ? <LinkContainer key={staff.StaffId} to={`/User/${staff.StaffId}`}>
                 <ListGroupItem header={staff.StaffName}>
                     {"Skills:    " + staff.Skills}
@@ -88,7 +89,7 @@ export default class Staff extends Component {
         return (
             <div>
                 {this.props.isAuthenticated ? this.renderProjects() : this.renderLander()}
-            </div>
+            </div>        //check authentication status then calling render method
         );
     }
 }

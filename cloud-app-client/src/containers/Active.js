@@ -31,7 +31,7 @@ export default class Active extends Component {
     }
 
     renderPprojects(pprojects) {
-        return [{}].concat(pprojects).map((pproject, i) => i !== 0  //define a new array from pprojects and traversing the array by index
+        return [{}].concat(pprojects).map((pproject, i) => i !== 0  //define a new array from pprojects and traversing the array 
             ? <LinkContainer key={pproject.projectId} to={`/Projects/${pproject.projectId}`}>
                 <ListGroupItem header={pproject.projectName}>
 

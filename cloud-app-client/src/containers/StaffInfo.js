@@ -24,7 +24,7 @@ export default class Projects extends Component {
 
     async componentDidMount() {
         try {
-            const staff = await this.getStaff();
+            const staff = await this.getStaff();                                        //Calling getStaff funtion to retrieve staffs information so that it can be modified
             const { Birthdate, Email, Gender, Skills, StaffName, StaffIdentity } = staff;
             this.setState({
                 staff,
@@ -40,25 +40,29 @@ export default class Projects extends Component {
         }
                                 }
 
-    getStaff() {
+    getStaff() {                                                                       //define a funtion to calling API to get a specific staff information by currrent path(StaffId)
         return API.get("User", `/User/${this.props.match.params.id}`);
     }
 
-    validateForm() {
+    validateForm() {                                                                    //form validation
         return this.state.Birthdate.length > 0 && this.state.Email.length > 0 && this.state.Gender.length > 0 && this.state.Skills.length > 0 && this.state.StaffName.length > 0 && this.state.StaffIdentity.length > 0;
     }
 
     handleChange = event => {
         this.setState({
             [event.target.id]: event.target.value
-        });
+        });                                                                          //update form value
     }
 
     saveInfo(staff) {
         return API.put("User", `/User/${this.props.match.params.id}`, {
-            body: staff
+            body: staff                                                         //define a function to Call API to update staff information
         });
     }
+
+    deleteStaff() {
+        return API.del("User", `/User/${this.props.match.params.id}`);            //define a function to Call API to delete a staff information by currrent path(StaffId)
+    }        
 
     handleSubmit = async event => {
         event.preventDefault();
@@ -71,20 +75,15 @@ export default class Projects extends Component {
                 Skills: this.state.Skills,
                 StaffName: this.state.StaffName,
                 StaffIdentity: this.StaffIdentity,
-            });
-            this.props.history.push("/User");
+            });                                                     //Calling update staff informaton function and put data
+            this.props.history.push("/User");                       //redirect to staff interface
         } catch (e) {
             alert(e);
             this.setState({ isLoading: false });
         }
-    }
-    
+    }                                        
 
-    deleteStaff() {
-        return API.del("User", `/User/${this.props.match.params.id}`);
-    }
-
-    handleDelete = async event => {
+    handleDelete = async event => {                   //delete a staff
         event.preventDefault();
         const confirmed = window.confirm(
             "Are you sure you want to delete the Staff Information?"
@@ -102,8 +101,8 @@ export default class Projects extends Component {
         }
     }
 
-    render() {
-        return (
+    render() {               //interface render
+        return (                                               
             <div className="StaffInfo">
                 <Breadcrumb>
                     <Breadcrumb.Item href="/">Home</Breadcrumb.Item>
