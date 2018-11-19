@@ -4,6 +4,7 @@ import "./Project.css";
 import { API } from "aws-amplify";
 import { LinkContainer} from "react-router-bootstrap";
 
+//projects management home interface
 export default class Project extends Component {
     constructor(props) {
         super(props);

@@ -4,6 +4,8 @@ import LoaderButton from "../components/LoaderButton";
 import "./NewProject.css";
 import { API } from "aws-amplify";
 
+
+//add a new staff interface
 export default class NewStaff extends Component {
     constructor(props) {
         super(props);

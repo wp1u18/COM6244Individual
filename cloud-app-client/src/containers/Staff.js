@@ -4,7 +4,7 @@ import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 import "./Staff.css";
 
-
+//staff management home interface
 export default class Staff extends Component {
     constructor(props) {
         super(props);

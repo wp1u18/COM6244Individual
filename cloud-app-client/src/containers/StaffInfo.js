@@ -4,7 +4,7 @@ import { FormGroup, FormControl, Breadcrumb } from "react-bootstrap";
 import LoaderButton from "../components/LoaderButton";
 import "./StaffInfo.css";
 
-
+//Edit staff info interface
 export default class Projects extends Component {
     constructor(props) {
         super(props);

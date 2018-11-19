@@ -3,6 +3,7 @@ import { ListGroupItem, Breadcrumb, Button, FormGroup, InputGroup, FormControl, 
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 
+//projects searching interface
 export default class Psearch extends Component {
     constructor(props) {
         super(props);

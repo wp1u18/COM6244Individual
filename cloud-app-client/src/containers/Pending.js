@@ -4,6 +4,7 @@ import "./Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 
+//view pending projects interface
 export default class Pending extends Component {
     constructor(props) {
         super(props);

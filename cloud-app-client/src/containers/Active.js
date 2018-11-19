@@ -4,6 +4,7 @@ import "./Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 
+//view active projects interface
 export default class Active extends Component {
     constructor(props) {
         super(props);

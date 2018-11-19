@@ -4,6 +4,8 @@ import "./Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 
+
+//Home interface
 export default class Home extends Component {
     constructor(props) {
         super(props);

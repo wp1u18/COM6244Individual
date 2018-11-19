@@ -4,6 +4,8 @@ import "./Home.css";
 import { API } from "aws-amplify";
 import { LinkContainer } from "react-router-bootstrap";
 
+
+//view completed projects interface
 export default class Completed extends Component {
     constructor(props) {
         super(props);
