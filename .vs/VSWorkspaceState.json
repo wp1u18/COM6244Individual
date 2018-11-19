@@ -1,10 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\notes-app-api",
-    "\\notes-app-client",
-    "\\notes-app-client\\src"
+    "\\cloud-app-client",
+    "\\cloud-app-client\\src",
+    "\\cloud-app-client\\src\\containers"
   ],
-  "SelectedNode": "\\notes-app-api\\serverless.yml",
+  "SelectedNode": "\\cloud-app-client\\src\\containers\\NewStaff.js",
   "PreviewInSolutionExplorer": false
 }

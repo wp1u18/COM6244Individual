@@ -34,7 +34,7 @@ export default class Staff extends Component {
     }
 
     renderProjectList(staffs) {
-        return [{}].concat(staffs).map((staff, i) => i !== 0            //list staffs info with name and skills
+        return [{}].concat(staffs).map((staff, i) => i !== 0                              //list staffs info with name and skills
             ? <LinkContainer key={staff.StaffId} to={`/User/${staff.StaffId}`}>
                 <ListGroupItem header={staff.StaffName}>
                     {"Skills:    " + staff.Skills}

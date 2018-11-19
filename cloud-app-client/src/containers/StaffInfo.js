@@ -18,7 +18,7 @@ export default class Projects extends Component {
             Gender: "",
             Skills: "",
             StaffName: "",
-            StaffIdentity:""
+            StaffIdentity:"",
           };
       }
 
@@ -44,8 +44,8 @@ export default class Projects extends Component {
         return API.get("User", `/User/${this.props.match.params.id}`);
     }
 
-    validateForm() {                                                                    //form validation
-        return this.state.Birthdate.length > 0 && this.state.Email.length > 0 && this.state.Gender.length > 0 && this.state.Skills.length > 0 && this.state.StaffName.length > 0 && this.state.StaffIdentity.length > 0;
+    validateForm() {
+        return this.state.Birthdate.length > 0 && this.state.Email.length > 0 && this.state.Gender.length > 0 && this.state.Skills.length > 0 && this.state.StaffName.length > 0;
     }
 
     handleChange = event => {
@@ -54,9 +54,9 @@ export default class Projects extends Component {
         });                                                                          //update form value
     }
 
-    saveInfo(staff) {
+    saveInfo(staffs) {
         return API.put("User", `/User/${this.props.match.params.id}`, {
-            body: staff                                                         //define a function to Call API to update staff information
+            body: staffs                                                         //define a function to Call API to update staff information
         });
     }
 
@@ -74,7 +74,7 @@ export default class Projects extends Component {
                 Gender: this.state.Gender,
                 Skills: this.state.Skills,
                 StaffName: this.state.StaffName,
-                StaffIdentity: this.StaffIdentity,
+                StaffIdentity: this.state.StaffIdentity
             });                                                     //Calling update staff informaton function and put data
             this.props.history.push("/User");                       //redirect to staff interface
         } catch (e) {
@@ -113,7 +113,7 @@ export default class Projects extends Component {
                         <form onSubmit={this.handleSubmit}>
                             <FormGroup controlId="StaffName">
                                 <label>Name:</label>
-                                <FormControl onChange={this.handleChange} value={this.state.StaffName} />
+                                <FormControl onChange={this.handleChange} value={this.state.StaffName}/>
                             </FormGroup>
                             <FormGroup controlId="Gender">
                                 <label>Gender:</label>

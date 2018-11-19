@@ -18,9 +18,9 @@ export async function main(event, context) {
             ":Email": data.Email || null,
             ":Birthdate": data.Birthdate || null,
             ":StaffIdentity": data.StaffIdentity || null
-        },// 'ExpressionAttributeValues' defines the value in the update expression
-        
-        ReturnValues: "ALL_NEW"// 'ReturnValues' specifies if and how to return the item's attributes
+        },          
+        // ExpressionAttributeValues defines the value in the update expression
+        ReturnValues: "ALL_NEW"  // 'ReturnValues' specifies if and how to return the item's attributes
     };
 
     try {

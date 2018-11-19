@@ -61,7 +61,7 @@ export default class Signup extends Component {
         return (
             <form onSubmit={this.handleRequestSubmit}>  
                 <Alert bsStyle="warning">
-                    Your request has been sent to administors,please waiting for confitmation
+                    Your request has been sent to administors,please waiting for confirmation
                </Alert>
                 <Button type="submit">Confirm</Button>
             </form>

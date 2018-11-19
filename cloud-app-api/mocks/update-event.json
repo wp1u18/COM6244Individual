@@ -1,8 +1,7 @@
 {
-  "body": "{\"StaffName\":\"WeichengPi\",\"Gender\":\"male\",\"Email\":\"wp1u18@soton.ac.uk\",\"Skills\":\"Java\",\"Birthdate\":\"1st Aug,1995\",\"StaffIdentity\":\"Staff\" }",
-   "requestContext": {
-    "identity": {
-      "cognitoIdentityId": "Administrator"
-    }
+  "body": "{\"StaffName\":\"WeichengPi\",\"Gender\":\"Male\",\"Email\":\"wp1u18@soton.ac.uk\",\"Skills\":\"Java\",\"Birthdate\":\"1st Aug,1995\",\"StaffIdentity\":\"Manager\" }",
+   "pathParameters": {
+     "id": "21e391e0-eb85-11e8-86b1-efb164d9f0c3"
+    
   }
 }

@@ -89,7 +89,7 @@ export default class Project extends Component {
             </Breadcrumb>
             <Breadcrumb>
                 <LinkContainer key="Pending" to="/Pending">
-                    <Breadcrumb.Item >View Pending Paojects</Breadcrumb.Item>
+                    <Breadcrumb.Item >View Pending Pojects</Breadcrumb.Item>
                 </LinkContainer>
                 <LinkContainer key="Active" to="/Active">
                     <Breadcrumb.Item>View Active Projects</Breadcrumb.Item> 

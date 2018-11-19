@@ -4,6 +4,8 @@ import LoaderButton from "../components/LoaderButton";
 import "./NewProject.css";
 import { API } from "aws-amplify";
 
+
+//create a new project
 export default class NewProject extends Component {
     constructor(props) {
         super(props);
